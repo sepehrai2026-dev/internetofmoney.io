@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet of Money — Your Crypto Education Hub</title>
+<meta name="description" content="Learn cryptocurrency from the ground up. Beginner-friendly guides to Bitcoin, DeFi, wallets, blockchain, smart contracts, and staking.">
+<meta name="keywords" content="crypto education, learn bitcoin, defi explained, crypto wallets, blockchain basics, smart contracts, staking, yield farming">
+<meta property="og:title" content="Internet of Money — Your Crypto Education Hub">
+<meta property="og:description" content="Learn cryptocurrency from the ground up. Beginner-friendly guides to Bitcoin, DeFi, wallets, blockchain, smart contracts, and staking.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://internetofmoney.io">
+<link rel="canonical" href="https://internetofmoney.io">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --text: #e8e8e8;
+  --text-secondary: #aaaaaa;
+  --text-muted: #888888;
+  --accent: var(--site-accent, #2563eb);
+  --accent-light: var(--site-accent-light, #1a3a6b);
+  --accent-dark: var(--site-accent-dark, #1e40af);
+  --border: #222222;
+  --max-w: 820px;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Nav ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.nav-updated {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ── Hero ── */
+.hero {
+  padding-top: 6rem;
+  padding-bottom: 5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.hero-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.hero-sub {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* ── Sections ── */
+.section {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.section-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+/* ── Intro ── */
+.section--intro {
+  padding: 3.5rem 0;
+}
+
+.intro-copy {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+/* ── Topic Cards ── */
+.topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.topic-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 1.75rem 1.5rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 0 1.25rem;
+}
+
+.topic-card + .topic-card {
+  border-top: none;
+}
+
+.topic-card:hover {
+  border-color: var(--accent);
+  background: #141414;
+}
+
+.topic-number {
+  grid-row: 1 / 3;
+  grid-column: 1;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  line-height: 1;
+  padding-top: 0.15rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.topic-card:hover .topic-number {
+  color: var(--accent);
+}
+
+.topic-header {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.topic-icon {
+  display: none;
+}
+
+.topic-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.topic-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.topic-body {
+  grid-column: 2;
+}
+
+.topic-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
+}
+
+.topic-points {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.topic-points li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 3px 0 3px 1.25rem;
+  position: relative;
+}
+
+.topic-points li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+.topic-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.topic-link::after {
+  content: '\2197';
+  font-size: 0.9em;
+}
+
+/* ── Guide ── */
+.guide-body {
+  color: var(--text-secondary);
+  line-height: 1.85;
+  font-size: 0.95rem;
+}
+
+.guide-body h3 {
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 2.5rem 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.guide-body h3:first-child {
+  margin-top: 0;
+}
+
+.guide-body p {
+  margin-bottom: 1rem;
+}
+
+.guide-body ul,
+.guide-body ol {
+  margin: 0.5rem 0 1rem 1.25rem;
+}
+
+.guide-body li {
+  margin-bottom: 0.35rem;
+}
+
+/* ── Resources ── */
+.resources-body {
+  color: var(--text-secondary);
+  line-height: 1.85;
+  font-size: 0.95rem;
+}
+
+.resources-body h3 {
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 2.5rem 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.resources-body h3:first-child {
+  margin-top: 0;
+}
+
+.resources-body p {
+  margin-bottom: 1rem;
+}
+
+.resources-body a {
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.resources-body a:hover {
+  text-decoration: none;
+  border-bottom-color: var(--accent);
+}
+
+.resources-body ul,
+.resources-body ol {
+  margin: 0.5rem 0 1rem 1.25rem;
+}
+
+.resources-body li {
+  margin-bottom: 0.35rem;
+}
+
+/* ── FAQ ── */
+.faq-list {
+  border-top: 1px solid var(--border);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 1.25rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: inherit;
+  gap: 1rem;
+  line-height: 1.4;
+}
+
+.faq-q::after {
+  content: '+';
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.faq-q:hover::after {
+  color: var(--accent);
+}
+
+.faq-q.open::after { content: '\2212'; }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-a.open {
+  max-height: 600px;
+  padding-bottom: 1.25rem;
+}
+
+.faq-a p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+/* ── Footer ── */
+.footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.footer-top {
+  padding: 3rem 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.footer-disclaimer {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-links-heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.footer-links a {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  padding: 1.25rem 0 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer-bottom p {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .topic-card {
+    grid-template-columns: 2.25rem 1fr;
+    gap: 0 1rem;
+    padding: 1.25rem 1rem;
+  }
+
+  .topic-number {
+    font-size: 1.25rem;
+  }
+
+  .footer-top {
+    flex-direction: column;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Internet of Money</a>
+    <span class="nav-updated">Updated July 2026</span>
+  </div>
+</nav>
+<span class="logo-icon" style="display:none" aria-hidden="true">💰</span>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">Understand crypto before you invest</h1>
+    <p class="hero-sub">Plain-English guides to Bitcoin, DeFi, wallets, and blockchain technology — built for beginners who want to learn before they leap.</p>
+  </div>
+</header>
+
+<main class="main">
+
+  <section class="section section--intro">
+    <div class="section-inner">
+      <p class="intro-copy">Cryptocurrency doesn't have to be confusing. Whether you're curious about Bitcoin, want to understand DeFi, or need to pick your first wallet, we break down every concept in clear, jargon-free language. No shilling, no hype — just honest education so you can make informed decisions with your money.</p>
+    </div>
+  </section>
+
+  <section class="section section--topics" id="topics">
+    <div class="section-inner">
+      <span class="section-label">Explore</span>
+      <h2 class="section-heading">Start learning</h2>
+      <div class="topic-list">
+        <div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">₿</span>
+    <span class="topic-name">What is Bitcoin</span>
+    <span class="topic-tag">Fundamentals</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">Bitcoin is the original cryptocurrency — a decentralized digital currency that lets you send money anywhere in the world without banks or intermediaries. Learn how it works, why it has value, and what makes it different from traditional money.</p>
+    <ul class="topic-points">
+      How Bitcoin transactions work,Proof of Work and mining explained,Bitcoin's fixed supply of 21 million coins,The role of nodes and the network,Bitcoin vs. traditional banking
+    </ul>
+    <a href="#affiliate-bitcoin-guide" class="topic-link" target="_blank" rel="noopener nofollow">Learn about Bitcoin</a>
+  </div>
+</div>
+
+<div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">🏦</span>
+    <span class="topic-name">Understanding DeFi</span>
+    <span class="topic-tag">Advanced</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">Decentralized Finance (DeFi) recreates traditional financial services — lending, borrowing, trading — using smart contracts instead of banks. Understand how protocols like Aave, Uniswap, and Compound work under the hood.</p>
+    <ul class="topic-points">
+      What decentralized finance actually means,Lending and borrowing protocols,Decentralized exchanges (DEXs),Liquidity pools and impermanent loss,Risks and opportunities in DeFi
+    </ul>
+    <a href="#affiliate-defi-guide" class="topic-link" target="_blank" rel="noopener nofollow">Explore DeFi</a>
+  </div>
+</div>
+
+<div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">👛</span>
+    <span class="topic-name">Crypto Wallets Explained</span>
+    <span class="topic-tag">Essential</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">Your crypto wallet is how you store, send, and receive digital assets. Learn the difference between hot wallets, cold wallets, custodial and non-custodial options, and how to keep your funds safe.</p>
+    <ul class="topic-points">
+      Hot wallets vs. cold storage,Custodial vs. non-custodial wallets,Hardware wallet recommendations,Seed phrase security best practices,Multi-signature wallet setups
+    </ul>
+    <a href="#affiliate-wallets-guide" class="topic-link" target="_blank" rel="noopener nofollow">Choose a wallet</a>
+  </div>
+</div>
+
+<div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">⛓️</span>
+    <span class="topic-name">Blockchain Basics</span>
+    <span class="topic-tag">Fundamentals</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">Blockchain is the technology underneath every cryptocurrency. Understand how blocks are created, how consensus works, and why this distributed ledger technology is being adopted far beyond crypto.</p>
+    <ul class="topic-points">
+      How blocks and chains work,Consensus mechanisms explained,Public vs. private blockchains,Immutability and transparency,Real-world blockchain applications
+    </ul>
+    <a href="#affiliate-blockchain-guide" class="topic-link" target="_blank" rel="noopener nofollow">Learn blockchain</a>
+  </div>
+</div>
+
+<div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">📜</span>
+    <span class="topic-name">Smart Contracts 101</span>
+    <span class="topic-tag">Advanced</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">Smart contracts are self-executing programs that run on a blockchain. They power DeFi, NFTs, and decentralized applications. Learn how they work and why they're revolutionizing agreements.</p>
+    <ul class="topic-points">
+      What smart contracts do,How Ethereum smart contracts work,Solidity and contract development,Smart contract auditing and security,Real-world use cases beyond crypto
+    </ul>
+    <a href="#affiliate-smartcontracts-guide" class="topic-link" target="_blank" rel="noopener nofollow">Understand smart contracts</a>
+  </div>
+</div>
+
+<div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">📈</span>
+    <span class="topic-name">Staking and Yield</span>
+    <span class="topic-tag">Earning</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">Staking lets you earn passive income by locking up your crypto to help secure a blockchain network. Learn how Proof of Stake works, where to stake, and how to evaluate yield opportunities safely.</p>
+    <ul class="topic-points">
+      Proof of Stake explained,How staking rewards are calculated,Best staking platforms compared,Liquid staking and LSTs,Evaluating yield farming risks
+    </ul>
+    <a href="#affiliate-staking-guide" class="topic-link" target="_blank" rel="noopener nofollow">Start staking</a>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--guide" id="guide">
+    <div class="section-inner">
+      <span class="section-label">Guide</span>
+      <h2 class="section-heading">Your crypto learning roadmap</h2>
+      <div class="guide-body"><h3>Step 1: Understand the basics</h3><p>Before buying anything, learn what blockchain actually is and why Bitcoin was created. Understanding the underlying technology helps you evaluate every other project and avoid scams.</p><h3>Step 2: Set up a secure wallet</h3><p>Your wallet is your bank. Learn the difference between custodial and non-custodial wallets, hot and cold storage, and why your seed phrase is the most important thing you'll ever write down.</p><h3>Step 3: Explore beyond Bitcoin</h3><p>Once you understand the fundamentals, explore DeFi protocols, smart contract platforms, and staking. Each topic builds on the last, and rushing ahead without the basics is how people lose money.</p><h3>Step 4: Practice with small amounts</h3><p>Start small. Use testnets to practice transactions, swap tiny amounts on a DEX, and stake a minimal position. Real experience teaches more than any guide.</p></div>
+    </div>
+  </section>
+
+  <section class="section section--resources" id="resources">
+    <div class="section-inner">
+      <span class="section-label">Resources</span>
+      <h2 class="section-heading">Recommended resources</h2>
+      <div class="resources-body"><h3>Bitcoin Whitepaper</h3><p>The original 9-page paper by Satoshi Nakamoto that started it all. Surprisingly readable. <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">Read the whitepaper</a></p><h3>Ethereum.org Learn Hub</h3><p>Ethereum's official learning resources cover everything from basic concepts to advanced DeFi mechanics. <a href="https://ethereum.org/en/learn/" target="_blank" rel="noopener">Visit Ethereum.org</a></p><h3>Andreas Antonopoulos — Mastering Bitcoin</h3><p>The definitive technical book on Bitcoin, available free online. Great for those who want to go deeper. <a href="https://github.com/bitcoinbook/bitcoinbook" target="_blank" rel="noopener">Read on GitHub</a></p></div>
+    </div>
+  </section>
+
+  <section class="section section--faq" id="faq">
+    <div class="section-inner">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-heading">Frequently asked questions</h2>
+      <div class="faq-list" id="faq-list"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-name">Internet of Money</span>
+        <p class="footer-disclaimer">InternetOfMoney.io provides educational content about cryptocurrency. This is not financial advice. Always do your own research before making investment decisions. We may earn commissions through affiliate links.</p>
+      </div>
+      <div class="footer-links">
+        <span class="footer-links-heading">More resources</span>
+        <a href="https://sepehr.ai" target="_blank" rel="noopener">sepehr.ai</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Internet of Money. All rights reserved. Some links on this site are affiliate links. We may earn a commission if you make a purchase at no extra cost to you.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SITE_CONFIG = {"faqs":[{"q":"Do I need money to start learning about crypto?","a":"No. You can learn everything about blockchain, Bitcoin, and DeFi without spending a cent. Many blockchains have testnets where you can practice transactions with free test tokens. Only invest real money once you truly understand what you're buying."},{"q":"Is cryptocurrency a scam?","a":"Cryptocurrency itself is legitimate technology. However, the crypto space has many scams — fake tokens, rug pulls, and Ponzi schemes. That's exactly why education matters. Learning to evaluate projects, read smart contracts, and spot red flags is the best protection."},{"q":"What's the safest way to store crypto?","a":"For long-term storage, a hardware wallet (like Ledger or Trezor) is the safest option. It keeps your private keys offline and immune to online hacks. Always back up your seed phrase on paper or metal and store it somewhere secure."},{"q":"How is this site different from crypto YouTube?","a":"Most crypto YouTubers are incentivized to hype tokens they hold. We focus on education, not price predictions. Our guides explain how things work so you can make your own decisions — we don't tell you what to buy."},{"q":"What should I learn first?","a":"Start with 'What is Bitcoin' and 'Blockchain Basics' to understand the foundation. Then move to wallets so you know how to store crypto safely. Only after that should you explore DeFi, smart contracts, and staking."}],"accentColor":"#f59e0b","accentLight":"#fef3c7","accentDark":"#d97706","ctaText":""};
+document.addEventListener('DOMContentLoaded', () => {
+  // Accent color
+  if (SITE_CONFIG.accentColor) {
+    document.documentElement.style.setProperty('--site-accent', SITE_CONFIG.accentColor);
+    document.documentElement.style.setProperty('--site-accent-light', SITE_CONFIG.accentLight || SITE_CONFIG.accentColor + '22');
+    document.documentElement.style.setProperty('--site-accent-dark', SITE_CONFIG.accentDark || SITE_CONFIG.accentColor);
+  }
+
+  // Number the topic cards
+  const cards = document.querySelectorAll('.topic-card');
+  cards.forEach((card, i) => {
+    const num = card.querySelector('.topic-number');
+    if (num) {
+      num.textContent = String(i + 1).padStart(2, '0');
+    }
+  });
+
+  // FAQ accordion
+  const faqList = document.getElementById('faq-list');
+  if (SITE_CONFIG.faqs && faqList) {
+    SITE_CONFIG.faqs.forEach(faq => {
+      const item = document.createElement('div');
+      item.className = 'faq-item';
+      item.innerHTML = `
+        <button class="faq-q">${faq.q}</button>
+        <div class="faq-a"><p>${faq.a}</p></div>
+      `;
+      const btn = item.querySelector('.faq-q');
+      const answer = item.querySelector('.faq-a');
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('open');
+        answer.classList.toggle('open');
+      });
+      faqList.appendChild(item);
+    });
+  }
+
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        nav.style.borderBottomColor = '#333';
+      } else {
+        nav.style.borderBottomColor = '';
+      }
+    }, { passive: true });
+  }
+});
+
+
+</script>
+</body>
+</html>
